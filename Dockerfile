@@ -5,7 +5,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # Run-Phase
-FROM openjdk:17-jre-alpine
+FROM openjdk:17
 WORKDIR /app
 COPY --from=build /app/target/starlink-watchtower-0.0.1-SNAPSHOT.jar /app/starlink-watchtower.jar
 EXPOSE 8111
