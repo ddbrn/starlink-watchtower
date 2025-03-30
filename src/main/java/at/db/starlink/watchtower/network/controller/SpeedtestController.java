@@ -3,7 +3,6 @@ package at.db.starlink.watchtower.network.controller;
 import at.db.starlink.watchtower.network.SpeedtestService;
 import at.db.starlink.watchtower.network.model.Speedtest;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
