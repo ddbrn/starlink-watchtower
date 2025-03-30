@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.TimeZone;
 
 @Slf4j
@@ -49,8 +50,7 @@ public class SpeedtestService {
     private static Speedtest mapSpeedtestResultToSpeedtest(SpeedtestResult speedtestResult){
         Speedtest speedtest = new Speedtest();
 
-        speedtest.setTimestamp(speedtestResult.getTimestamp());
-        speedtest.setDateTime(LocalDateTime.ofInstant(Instant.ofEpochMilli(speedtest.getTimestamp()), TimeZone.getDefault().toZoneId()));
+        speedtest.setTimestamp(ZonedDateTime.now());
 
         // Client
         speedtest.setClientIp(speedtestResult.getClient().getIp());

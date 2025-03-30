@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Entity
 @Data
@@ -14,10 +15,7 @@ public class Speedtest {
     private Long id;
 
     @Column(name = "timestamp")
-    private long timestamp;
-
-    @Column(name = "date_time")
-    private LocalDateTime dateTime;
+    private ZonedDateTime timestamp;
 
     @Column(name = "client_ip")
     private String clientIp;
