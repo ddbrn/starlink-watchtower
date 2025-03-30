@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8111:8111"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/watchtower
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_SPEEDTEST_CRON=0 */10 * * * *
+    depends_on:
+      - db
+    networks:
+      - watchtower
+
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=watchtower
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - watchtower
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_DATABASE_TYPE=postgres
+      - GF_DATABASE_HOST=db:5432
+      - GF_DATABASE_NAME=watchtower
+      - GF_DATABASE_USER=postgres
+      - GF_DATABASE_PASSWORD=postgres
+      - GF_DATABASE_SSL_MODE=disable
+    depends_on:
+      - db
+    volumes:
+      - grafana-data:/var/lib/grafana
+    networks:
+      - watchtower
+
+networks:
+  watchtower:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  grafana-data:
