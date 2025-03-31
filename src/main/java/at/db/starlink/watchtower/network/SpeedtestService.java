@@ -6,6 +6,7 @@ import at.bernhardangerer.speedtestclient.model.SpeedtestResult;
 import at.db.starlink.watchtower.network.model.Speedtest;
 import at.db.starlink.watchtower.network.repository.SpeedtestRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import java.time.ZonedDateTime;
 
@@ -13,6 +14,9 @@ import java.time.ZonedDateTime;
 @Service
 public class SpeedtestService {
     private final SpeedtestRepository speedtestRepository;
+
+    @Value("${speedtest.disposeMaxRetries:10}")
+    private int maxDisposeRetries;
 
     public SpeedtestService(SpeedtestRepository speedtestRepository) {
         this.speedtestRepository = speedtestRepository;
@@ -33,20 +37,21 @@ public class SpeedtestService {
 
     public void disposeSpeedtest(){
         log.debug("Start disposeSpeedtest()");
-        Speedtest speedtest = getSpeedtest();
+        Speedtest speedtest = null;
 
-        if (speedtest == null) {
-            log.debug("Speedtest is null, trying again in 10 seconds");
-            try{
-                Thread.sleep(10000);
-            }catch (InterruptedException e){
-                log.error("Error in disposeSpeedtest(): ", e);
-            }
+        for (int attempt = 1; attempt <= maxDisposeRetries; attempt++) {
             speedtest = getSpeedtest();
+            if (speedtest != null) {
+                break;
+            }
+            log.debug("disposeSpeedtest(): Attempt {} of {} failed, retrying...", attempt, maxDisposeRetries);
         }
 
-        speedtestRepository.save(speedtest);
-
+        if (speedtest == null) {
+            log.debug("disposeSpeedtest(): Max retries ({}) reached, aborting", maxDisposeRetries);
+        }else{
+            speedtestRepository.save(speedtest);
+        }
         log.debug("End disposeSpeedtest()");
     }
 
