@@ -3,16 +3,11 @@ package at.db.starlink.watchtower.network;
 import at.bernhardangerer.speedtestclient.SpeedtestController;
 import at.bernhardangerer.speedtestclient.exception.SpeedtestException;
 import at.bernhardangerer.speedtestclient.model.SpeedtestResult;
-import at.bernhardangerer.speedtestclient.model.TransferTestResult;
 import at.db.starlink.watchtower.network.model.Speedtest;
 import at.db.starlink.watchtower.network.repository.SpeedtestRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
-import java.util.TimeZone;
 
 @Slf4j
 @Service
