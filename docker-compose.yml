@@ -12,7 +12,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SPRING_SPEEDTEST_CRON=0 */10 * * * *
+      - SPEEDTEST_CRON=0 0 */1 * * *
     depends_on:
       - db
     networks:
