@@ -14,6 +14,7 @@ services:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - SPEEDTEST_CRON=0 0 */1 * * *
       - SPEEDTEST_DISPOSEMAXRETRIES=10
+      - SPEEDTEST_DISPOSESLEEPTIME=10000
     depends_on:
       - db
     networks:
