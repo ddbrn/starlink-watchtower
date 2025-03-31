@@ -40,9 +40,17 @@ public class SpeedtestService {
         log.debug("Start disposeSpeedtest()");
         Speedtest speedtest = getSpeedtest();
 
-        if (speedtest != null) {
-            speedtestRepository.save(speedtest);
+        if (speedtest == null) {
+            log.debug("Speedtest is null, trying again in 10 seconds");
+            try{
+                Thread.sleep(10000);
+            }catch (InterruptedException e){
+                log.error("Error in disposeSpeedtest(): ", e);
+            }
+            speedtest = getSpeedtest();
         }
+
+        speedtestRepository.save(speedtest);
 
         log.debug("End disposeSpeedtest()");
     }
