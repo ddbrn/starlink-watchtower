@@ -18,6 +18,9 @@ public class SpeedtestService {
     @Value("${speedtest.disposeMaxRetries:10}")
     private int maxDisposeRetries;
 
+    @Value("${speedtest.disposeSleepTime:10000}")
+    private int disposeSleepTime;
+
     public SpeedtestService(SpeedtestRepository speedtestRepository) {
         this.speedtestRepository = speedtestRepository;
     }
@@ -45,6 +48,14 @@ public class SpeedtestService {
                 break;
             }
             log.debug("disposeSpeedtest(): Attempt {} of {} failed, retrying...", attempt, maxDisposeRetries);
+
+           try {
+                Thread.sleep(disposeSleepTime); // Warte 1 Sekunde, bevor der nächste Versuch gestartet wird
+           } catch (InterruptedException e) {
+                Thread.currentThread().interrupt(); // Setzt das Interrupt-Flag neu
+                log.error("disposeSpeedtest(): Interrupted while waiting", e);
+                return;
+           }
         }
 
         if (speedtest == null) {
