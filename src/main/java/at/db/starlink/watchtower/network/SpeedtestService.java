@@ -30,9 +30,9 @@ public class SpeedtestService {
         Speedtest speedtest = null;
         try{
             SpeedtestResult speedtestResult = SpeedtestController.runSpeedTest();
-            speedtest =mapSpeedtestResultToSpeedtest(speedtestResult);
+            speedtest = mapSpeedtestResultToSpeedtest(speedtestResult);
         } catch (SpeedtestException e) {
-            log.error("Error in getSpeedtest(): ", e);
+            log.error("Error in getSpeedtest()");
         }
         log.debug("End getSpeedtest(): {}", speedtest);
         return speedtest;
