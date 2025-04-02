@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-@Embeddable
+@Entity
 @Data
 @NoArgsConstructor
 public class NetworkInfo {
