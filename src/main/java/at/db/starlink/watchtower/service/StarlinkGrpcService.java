@@ -43,6 +43,7 @@ public class StarlinkGrpcService {
         WifiDiagnostics wifiDiagnostics = null;
         try {
             Response response = routerStub.handle(request);
+            log.debug("getRouterDiagnostics(): Router response case: {}", response.getResponseCase());
             wifiDiagnostics = mapToWifiDiagnostics(response);
         } catch (StatusRuntimeException e) {
             log.error("getRouterDiagnostics(): Error while trying to get router diagnostics", e);
@@ -61,6 +62,7 @@ public class StarlinkGrpcService {
         DishDiagnostics dishDiagnostics = null;
         try {
             Response response = dishStub.handle(request);
+            log.debug("getDishDiagnostics(): Dish response case: {}", response.getResponseCase());
             dishDiagnostics = mapToDishDiagnostics(response);
         } catch (StatusRuntimeException e) {
             log.error("getDishDiagnostics(): Error while trying to get dish diagnostics", e);
