@@ -96,6 +96,11 @@ public class StarlinkGrpcService {
 
         if (dishDiagnostics != null) {
             try {
+                if (dishDiagnosticsRepository.existsById(dishDiagnostics.getId())) {
+                    dishDiagnosticsRepository.deleteById(dishDiagnostics.getId());
+                    log.debug("Bestehender Datensatz mit ID {} gelöscht", dishDiagnostics.getId());
+                }
+
                 dishDiagnosticsRepository.save(dishDiagnostics);
                 log.info("Persisted Dish diagnostics for ID: {}", dishDiagnostics.getId());
             } catch (Exception e) {
