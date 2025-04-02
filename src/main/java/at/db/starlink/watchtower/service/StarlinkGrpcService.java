@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -145,7 +146,50 @@ public class StarlinkGrpcService {
         dishDiagnostics.setTimestamp(ZonedDateTime.now());
         dishDiagnostics.setUtcOffsetS(dishResponse.getUtcOffsetS());
         dishDiagnostics.setHardwareSelfTest(DishDiagnostics.TestResult.valueOf(dishResponse.getHardwareSelfTest().name()));
-        dishDiagnostics.setDishIsHeating(dishResponse.getAlerts().getDishIsHeating());
+        dishDiagnostics.setHardwareSelfTestCodes(
+                dishResponse.getHardwareSelfTestCodesList().stream()
+                        .map(code -> DishDiagnostics.TestResultCode.valueOf(code.name()))
+                        .collect(Collectors.toList())
+        );
+
+        // Alerts
+        DishDiagnostics.Alerts alerts = new DishDiagnostics.Alerts();
+        alerts.setDishIsHeating(dishResponse.getAlerts().getDishIsHeating());
+        alerts.setDishThermalThrottle(dishResponse.getAlerts().getDishThermalThrottle());
+        alerts.setDishThermalShutdown(dishResponse.getAlerts().getDishThermalShutdown());
+        alerts.setPowerSupplyThermalThrottle(dishResponse.getAlerts().getPowerSupplyThermalThrottle());
+        alerts.setMotorsStuck(dishResponse.getAlerts().getMotorsStuck());
+        alerts.setMastNotNearVertical(dishResponse.getAlerts().getMastNotNearVertical());
+        alerts.setSlowEthernetSpeeds(dishResponse.getAlerts().getSlowEthernetSpeeds());
+        alerts.setSoftwareInstallPending(dishResponse.getAlerts().getSoftwareInstallPending());
+        alerts.setMovingTooFastForPolicy(dishResponse.getAlerts().getMovingTooFastForPolicy());
+        alerts.setObstructed(dishResponse.getAlerts().getObstructed());
+        dishDiagnostics.setAlerts(alerts);
+
+        // Disablement Code
+        dishDiagnostics.setDisablementCode(DishDiagnostics.DisablementCode.valueOf(dishResponse.getDisablementCode().name()));
+
+        // Location
+        DishDiagnostics.Location location = new DishDiagnostics.Location();
+        location.setEnabled(dishResponse.getLocation().getEnabled());
+        location.setLatitude(dishResponse.getLocation().getLatitude());
+        location.setLongitude(dishResponse.getLocation().getLongitude());
+        location.setAltitudeMeters(dishResponse.getLocation().getAltitudeMeters());
+        location.setUncertaintyMetersValid(dishResponse.getLocation().getUncertaintyMetersValid());
+        location.setUncertaintyMeters(dishResponse.getLocation().getUncertaintyMeters());
+        location.setGpsTimeS(dishResponse.getLocation().getGpsTimeS());
+        dishDiagnostics.setLocation(location);
+
+        // Alignment Stats
+        DishDiagnostics.AlignmentStats alignmentStats = new DishDiagnostics.AlignmentStats();
+        alignmentStats.setBoresightAzimuthDeg(dishResponse.getAlignmentStats().getBoresightAzimuthDeg());
+        alignmentStats.setBoresightElevationDeg(dishResponse.getAlignmentStats().getBoresightElevationDeg());
+        alignmentStats.setDesiredBoresightAzimuthDeg(dishResponse.getAlignmentStats().getDesiredBoresightAzimuthDeg());
+        alignmentStats.setDesiredBoresightElevationDeg(dishResponse.getAlignmentStats().getDesiredBoresightElevationDeg());
+        dishDiagnostics.setAlignmentStats(alignmentStats);
+
+        // Stowed
+        dishDiagnostics.setStowed(dishResponse.getStowed());
 
         return dishDiagnostics;
     }

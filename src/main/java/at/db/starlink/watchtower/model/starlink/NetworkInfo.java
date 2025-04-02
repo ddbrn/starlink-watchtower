@@ -2,13 +2,16 @@ package at.db.starlink.watchtower.model.starlink;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Embeddable
 @Data
+@NoArgsConstructor
 public class NetworkInfo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long networkId;
