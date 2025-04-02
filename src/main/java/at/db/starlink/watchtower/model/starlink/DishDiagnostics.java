@@ -67,34 +67,34 @@ public class DishDiagnostics {
     @Data
     @NoArgsConstructor
     public static class Alerts {
-        @Column(name = "dish_is_heating")
+        @Column(name = "dish_is_heating", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
         private boolean dishIsHeating;
 
-        @Column(name = "dish_thermal_throttle")
+        @Column(name = "dish_thermal_throttle", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
         private boolean dishThermalThrottle;
 
-        @Column(name = "dish_thermal_shutdown")
+        @Column(name = "dish_thermal_shutdown", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
         private boolean dishThermalShutdown;
 
-        @Column(name = "power_supply_thermal_throttle")
+        @Column(name = "power_supply_thermal_throttle", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
         private boolean powerSupplyThermalThrottle;
 
-        @Column(name = "motors_stuck")
+        @Column(name = "motors_stuck", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
         private boolean motorsStuck;
 
-        @Column(name = "mast_not_near_vertical")
+        @Column(name = "mast_not_near_vertical", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
         private boolean mastNotNearVertical;
 
-        @Column(name = "slow_ethernet_speeds")
+        @Column(name = "slow_ethernet_speeds", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
         private boolean slowEthernetSpeeds;
 
-        @Column(name = "software_install_pending")
+        @Column(name = "software_install_pending", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
         private boolean softwareInstallPending;
 
-        @Column(name = "moving_too_fast_for_policy")
+        @Column(name = "moving_too_fast_for_policy", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
         private boolean movingTooFastForPolicy;
 
-        @Column(name = "obstructed")
+        @Column(name = "obstructed", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
         private boolean obstructed;
     }
 
