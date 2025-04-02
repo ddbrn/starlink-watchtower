@@ -50,7 +50,7 @@ public class SpeedtestService {
             log.debug("disposeSpeedtest(): Attempt {} of {} failed, retrying...", attempt, maxDisposeRetries);
 
            try {
-                Thread.sleep(disposeSleepTime); // Warte 1 Sekunde, bevor der nächste Versuch gestartet wird
+                Thread.sleep(disposeSleepTime);
            } catch (InterruptedException e) {
                 Thread.currentThread().interrupt(); // Setzt das Interrupt-Flag neu
                 log.error("disposeSpeedtest(): Interrupted while waiting", e);
