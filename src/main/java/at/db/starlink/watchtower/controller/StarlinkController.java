@@ -51,7 +51,7 @@ public class StarlinkController {
     }
 
     @PostMapping(value = "/diagnostics/router/dispose")
-    @Scheduled(cron = "{starlink.router.dispose.cron}")
+    @Scheduled(cron = "${starlink.router.dispose.cron}")
     public ResponseEntity<Void> disposeRouterDiagnostics() {
         log.info("Received POST disposeRouterDiagnostics()");
         starlinkGrpcService.disposeRouterDiagnostics();
@@ -60,7 +60,7 @@ public class StarlinkController {
     }
 
     @PostMapping(value = "/diagnostics/dish/dispose")
-    @Scheduled(cron = "starlink.dish.dispose.cron")
+    @Scheduled(cron = "${starlink.dish.dispose.cron}")
     public ResponseEntity<Void> disposeDishDiagnostics() {
         log.info("Received POST disposeDishDiagnostics()");
         starlinkGrpcService.disposeDishDiagnostics();
