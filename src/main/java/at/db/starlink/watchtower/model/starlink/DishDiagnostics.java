@@ -68,34 +68,34 @@ public class DishDiagnostics {
     @NoArgsConstructor
     public static class Alerts {
         @Column(name = "dish_is_heating", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-        private boolean dishIsHeating;
+        private Boolean dishIsHeating;
 
         @Column(name = "dish_thermal_throttle", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-        private boolean dishThermalThrottle;
+        private Boolean dishThermalThrottle;
 
         @Column(name = "dish_thermal_shutdown", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-        private boolean dishThermalShutdown;
+        private Boolean dishThermalShutdown;
 
         @Column(name = "power_supply_thermal_throttle", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-        private boolean powerSupplyThermalThrottle;
+        private Boolean powerSupplyThermalThrottle;
 
         @Column(name = "motors_stuck", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-        private boolean motorsStuck;
+        private Boolean motorsStuck;
 
         @Column(name = "mast_not_near_vertical", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-        private boolean mastNotNearVertical;
+        private Boolean mastNotNearVertical;
 
         @Column(name = "slow_ethernet_speeds", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-        private boolean slowEthernetSpeeds;
+        private Boolean slowEthernetSpeeds;
 
         @Column(name = "software_install_pending", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-        private boolean softwareInstallPending;
+        private Boolean softwareInstallPending;
 
         @Column(name = "moving_too_fast_for_policy", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-        private boolean movingTooFastForPolicy;
+        private Boolean movingTooFastForPolicy;
 
         @Column(name = "obstructed", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-        private boolean obstructed;
+        private Boolean obstructed;
     }
 
     public enum DisablementCode {
