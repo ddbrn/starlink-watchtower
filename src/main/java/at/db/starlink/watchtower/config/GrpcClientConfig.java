@@ -3,6 +3,7 @@ package at.db.starlink.watchtower.config;
 import at.db.starlink.watchtower.DeviceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,6 +23,7 @@ public class GrpcClientConfig {
                 .build();
     }
 
+    @Bean(name = "dishChannel")
     public ManagedChannel dishChannel() {
         return ManagedChannelBuilder.forAddress(STARLINK_DISH_GRPC_ADDR, STARLINK_DISH_GRPC_PORT)
                 .usePlaintext()
@@ -29,12 +31,12 @@ public class GrpcClientConfig {
     }
 
     @Bean(name = "routerStub")
-    public DeviceGrpc.DeviceBlockingStub routerStub(ManagedChannel routerChannel) {
+    public DeviceGrpc.DeviceBlockingStub routerStub(@Qualifier("routerChannel") ManagedChannel routerChannel) {
         return DeviceGrpc.newBlockingStub(routerChannel);
     }
 
     @Bean(name = "dishStub")
-    public DeviceGrpc.DeviceBlockingStub dishStub(ManagedChannel dishChannel) {
+    public DeviceGrpc.DeviceBlockingStub dishStub(@Qualifier("dishChannel") ManagedChannel dishChannel) {
         return DeviceGrpc.newBlockingStub(dishChannel);
     }
 }

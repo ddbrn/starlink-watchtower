@@ -19,7 +19,7 @@ public class DishDiagnostics {
     private String hardwareVersion;
 
     @Column(name = "software_version")
-    private String softwareVersion; // Wird überschrieben, keine Historie
+    private String softwareVersion;
 
     @Column(name = "timestamp")
     private ZonedDateTime timestamp;
