@@ -1,5 +1,5 @@
 syntax = "proto3";
-package at.db.starlink.watchtower;
+package SpaceX.API.Device;
 
 option java_multiple_files = true;
 option java_package = "at.db.starlink.watchtower";
