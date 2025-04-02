@@ -3,6 +3,7 @@ package at.db.starlink.watchtower.model.starlink;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -25,5 +26,6 @@ public class WifiDiagnostics {
     private ZonedDateTime timestamp;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "wifiDiagnostics")
+    @ToString.Exclude
     private List<NetworkInfo> networks = new ArrayList<>();
 }
