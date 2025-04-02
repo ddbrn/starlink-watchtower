@@ -1,4 +1,4 @@
-package at.db.starlink.watchtower.network.model;
+package at.db.starlink.watchtower.model;
 
 import jakarta.persistence.*;
 import lombok.Data;

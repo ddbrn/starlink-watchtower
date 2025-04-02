@@ -1,10 +1,10 @@
-package at.db.starlink.watchtower.network;
+package at.db.starlink.watchtower.service;
 
 import at.bernhardangerer.speedtestclient.SpeedtestController;
 import at.bernhardangerer.speedtestclient.exception.SpeedtestException;
 import at.bernhardangerer.speedtestclient.model.SpeedtestResult;
-import at.db.starlink.watchtower.network.model.Speedtest;
-import at.db.starlink.watchtower.network.repository.SpeedtestRepository;
+import at.db.starlink.watchtower.model.Speedtest;
+import at.db.starlink.watchtower.repository.SpeedtestRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
-package at.db.starlink.watchtower.network.controller;
+package at.db.starlink.watchtower.controller;
 
-import at.db.starlink.watchtower.network.SpeedtestService;
-import at.db.starlink.watchtower.network.model.Speedtest;
+import at.db.starlink.watchtower.service.SpeedtestService;
+import at.db.starlink.watchtower.model.Speedtest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
