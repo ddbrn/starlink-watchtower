@@ -8,15 +8,15 @@ services:
     ports:
       - "8111:8111"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/watchtower
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=postgres
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SPEEDTEST_CRON=0 0 */1 * * *
-      - SPEEDTEST_DISPOSEMAXRETRIES=10
-      - SPEEDTEST_DISPOSESLEEPTIME=10000
-      - STARLINK_ROUTER_DISPOSE_CRON=0/3 * * * * *
-      - STARLINK_DISH_DISPOSE_CRON=0/3 * * * * *
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/${DB_NAME}
+      - SPRING_DATASOURCE_USERNAME=${DB_USER}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=${SPRING_JPA_HIBERNATE_DDL_AUTO}
+      - SPEEDTEST_CRON=${SPEEDTEST_CRON}
+      - SPEEDTEST_DISPOSEMAXRETRIES=${SPEEDTEST_DISPOSEMAXRETRIES}
+      - SPEEDTEST_DISPOSESLEEPTIME=${SPEEDTEST_DISPOSESLEEPTIME}
+      - STARLINK_ROUTER_DISPOSE_CRON=${STARLINK_ROUTER_DISPOSE_CRON}
+      - STARLINK_DISH_DISPOSE_CRON=${STARLINK_DISH_DISPOSE_CRON}
     depends_on:
       - db
     networks:
@@ -25,9 +25,9 @@ services:
   db:
     image: postgres:15
     environment:
-      - POSTGRES_DB=watchtower
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
     volumes:
       - postgres-data:/var/lib/postgresql/data
     ports:
@@ -40,16 +40,15 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - GF_DATABASE_TYPE=postgres
-      - GF_DATABASE_HOST=db:5432
-      - GF_DATABASE_NAME=watchtower
-      - GF_DATABASE_USER=postgres
-      - GF_DATABASE_PASSWORD=postgres
-      - GF_DATABASE_SSL_MODE=disable
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
     depends_on:
       - db
     volumes:
       - grafana-data:/var/lib/grafana
+      - ./grafana-provisioning/scripts:/scripts
+    entrypoint: ["/bin/sh", "-c", "/scripts/generate-datasources.sh && /run.sh"]
     networks:
       - watchtower
 
