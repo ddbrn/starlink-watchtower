@@ -36,7 +36,9 @@ services:
       - watchtower
 
   grafana:
-    image: grafana/grafana:latest
+    build:
+      context: .
+      dockerfile: grafana.Dockerfile
     ports:
       - "3000:3000"
     environment:
@@ -47,8 +49,7 @@ services:
       - db
     volumes:
       - grafana-data:/var/lib/grafana
-      - ./grafana-provisioning/scripts:/scripts
-    entrypoint: ["/bin/sh", "-c", "/scripts/generate-datasources.sh && /run.sh"]
+    entrypoint: [ "/bin/sh", "-c", "/scripts/generate-datasources.sh && /run.sh" ]
     networks:
       - watchtower
 
