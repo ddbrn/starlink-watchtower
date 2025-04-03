@@ -47,8 +47,6 @@ services:
       - db
     volumes:
       - grafana-data:/var/lib/grafana
-      - ./grafana-provisioning/scripts:/scripts
-    entrypoint: ["/bin/sh", "-c", "/scripts/generate-datasources.sh && /run.sh"]
     networks:
       - watchtower
 
