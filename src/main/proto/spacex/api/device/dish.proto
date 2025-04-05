@@ -10,7 +10,7 @@ import "spacex/api/device/common.proto";
 import "spacex/api/device/dish_config.proto";
 import "spacex/api/device/rssi_scan.proto";
 import "spacex/api/satellites/network/ut_disablement_codes.proto";
-import "spacex/api/telemetron/public/integrations/ut_pop_link_report.proto";
+import "spacex/api/telemetron/integrations/ut_pop_link_report.proto";
 
 message DishStowRequest {
   bool unstow = 1;

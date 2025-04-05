@@ -12,7 +12,6 @@ import "spacex/api/device/common.proto";
 import "spacex/api/device/dish.proto";
 import "spacex/api/device/transceiver.proto";
 import "spacex/api/device/wifi.proto";
-import "spacex/api/device/services/unlock/service.proto";
 import "google/protobuf/timestamp.proto";
 
 service Device {
@@ -139,8 +138,6 @@ message Request {
     .SpaceX.API.Device.TransceiverIFLoopbackTestRequest transceiver_if_loopback_test = 4001;
     .SpaceX.API.Device.TransceiverGetStatusRequest transceiver_get_status = 4003;
     .SpaceX.API.Device.TransceiverGetTelemetryRequest transceiver_get_telemetry = 4004;
-    .SpaceX.API.Device.Services.Unlock.StartUnlockRequest start_unlock = 5000;
-    .SpaceX.API.Device.Services.Unlock.FinishUnlockRequest finish_unlock = 5001;
     .SpaceX.API.Device.GetDiagnosticsRequest get_diagnostics = 6000;
   }
 }
@@ -229,8 +226,6 @@ message Response {
     .SpaceX.API.Device.TransceiverIFLoopbackTestResponse transceiver_if_loopback_test = 4001;
     .SpaceX.API.Device.TransceiverGetStatusResponse transceiver_get_status = 4003;
     .SpaceX.API.Device.TransceiverGetTelemetryResponse transceiver_get_telemetry = 4004;
-    .SpaceX.API.Device.Services.Unlock.StartUnlockResponse start_unlock = 5000;
-    .SpaceX.API.Device.Services.Unlock.FinishUnlockResponse finish_unlock = 5001;
     .SpaceX.API.Device.WifiGetDiagnosticsResponse wifi_get_diagnostics = 6000;
     .SpaceX.API.Device.DishGetDiagnosticsResponse dish_get_diagnostics = 6001;
   }

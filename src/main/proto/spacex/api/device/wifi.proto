@@ -10,7 +10,7 @@ import "google/protobuf/wrappers.proto";
 import "spacex/api/device/common.proto";
 import "spacex/api/device/wifi_config.proto";
 import "spacex/api/device/wifi_util.proto";
-import "spacex/api/telemetron/public/common/time.proto";
+import "spacex/api/telemetron/common/time.proto";
 import "spacex/api/satellites/network/ut_disablement_codes.proto";
 
 service Mesh {

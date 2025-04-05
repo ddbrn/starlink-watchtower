@@ -2,11 +2,11 @@ syntax = "proto3";
 
 package SpaceX.API.Device;
 
-option go_package = "spacex.com/api/device";
-
 option java_package = "com.spacex.api.device";
 option java_outer_classname = "TransceiverProto";
 option java_multiple_files = true;
+
+import "spacex/api/device/dish.proto";
 
 message TransceiverIFLoopbackTestRequest {
   bool enable_if_loopback = 1;
