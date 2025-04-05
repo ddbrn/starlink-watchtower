@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package SpaceX.API.Status;
+
+option java_package = "com.spacex.api.common.status";
+option java_outer_classname = "StatusProto";
+option java_multiple_files = true;
+
+message Status {
+  int32 code = 1;
+  string message = 2;
+}
+

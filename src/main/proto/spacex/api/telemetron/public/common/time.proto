@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package SpaceX.API.Telemetron.Public.Common;
+
+option java_package = "com.spacex.api.telemetron.public.common";
+option java_outer_classname = "TimeProto";
+option java_multiple_files = true;
+
+message TimestampInfo {
+  .SpaceX.API.Telemetron.Public.Common.Epoch epoch = 1;
+  int64 nanoseconds = 2;
+}
+
+enum Epoch {
+  UNIX = 0;
+  GPS = 1;
+}
+
