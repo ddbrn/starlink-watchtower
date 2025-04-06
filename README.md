@@ -3,7 +3,7 @@
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2-brightgreen)
 ![Docker](https://img.shields.io/badge/Docker-Compose-blue)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
-##### Monitoring application for starlink
+### Monitoring application for starlink
 # Current Features
 * Speedtests
 * Dish diagnostic data
