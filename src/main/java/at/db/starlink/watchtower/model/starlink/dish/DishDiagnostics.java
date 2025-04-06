@@ -1,4 +1,4 @@
-package at.db.starlink.watchtower.model.starlink;
+package at.db.starlink.watchtower.model.starlink.dish;
 
 import jakarta.persistence.*;
 import lombok.Data;

@@ -1,6 +1,6 @@
 package at.db.starlink.watchtower.config;
 
-import at.db.starlink.watchtower.DeviceGrpc;
+import com.spacex.api.device.DeviceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class GrpcClientConfig {
+public class GrpcStarlinkConfig {
 
     private static final String STARLINK_ROUTER_GRPC_ADDR = "192.168.1.1";
     private static final int STARLINK_ROUTER_GRPC_PORT = 9000;
