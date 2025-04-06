@@ -147,7 +147,7 @@ public class StarlinkService {
         log.debug("End disposeDishStatus()");
     }
 
-    @Scheduled(cron = "${starlink.dish.performance.cleanUp}")
+    @Scheduled(cron = "${starlink.dish.performance.cleanUp.cron}")
     public int deleteOldDishPerformance(){
         log.debug("Start deleteOldDishPerformance()");
 
