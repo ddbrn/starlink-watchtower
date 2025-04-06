@@ -43,7 +43,7 @@ public class StarlinkDishController {
         return ResponseEntity.ok(dishDiagnostics);
     }
 
-    @Scheduled(cron = "${starlink.dish.diagnostics.dispose}")
+    @Scheduled(cron = "${starlink.dish.diagnostics.dispose.cron}")
     @PostMapping(value = "/v1/disposeDishDiagnostics")
     public ResponseEntity<Void> disposeDishDiagnostics(){
         log.info("Received disposeDishDiagnostics()");
@@ -74,7 +74,7 @@ public class StarlinkDishController {
         return ResponseEntity.ok(obstructionMap.getObstructionImage());
     }
 
-    @Scheduled(cron = "${starlink.dish.obstructionMap.dispose}")
+    @Scheduled(cron = "${starlink.dish.obstructionMap.dispose.cron}")
     @PostMapping(value = "/v1/disposeObstructionMap")
     public ResponseEntity<Void> disposeObstructionMap(){
         log.info("Received POST disposeObstructionMap()");
@@ -104,7 +104,7 @@ public class StarlinkDishController {
         return ResponseEntity.ok(dishStatus);
     }
 
-    @Scheduled(cron = "${starlink.dish.status.dispose}")
+    @Scheduled(cron = "${starlink.dish.status.dispose.cron}")
     @PostMapping(value = "/v1/disposeDishStatus")
     public ResponseEntity<Void> disposeDishStatus(){
         log.info("Received POST disposeDishStatus()");
