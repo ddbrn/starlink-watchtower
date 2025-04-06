@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.bind.annotation.CookieValue;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -30,7 +29,7 @@ public class ObstructionMap {
 
     @ElementCollection
     @Column(name = "snr")
-    private List<Float> snr = new ArrayList<>();
+    private List<Float> snrList = new ArrayList<>();
 
     @Column(name = "min_elevation_deg")
     private float minElevationDeg;
@@ -41,6 +40,9 @@ public class ObstructionMap {
     @Enumerated(EnumType.STRING)
     @Column(name = "map_reference_frame")
     private MapReferenceFrame mapReferenceFrame;
+
+    @Column(name = "obstruction_image")
+    byte[] obstructionImage;
 
     public enum MapReferenceFrame {
         FRAME_UNKNOWN, FRAME_EARTH, FRAME_UT;

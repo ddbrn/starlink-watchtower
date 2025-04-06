@@ -48,7 +48,7 @@ public class DishDiagnostics {
     private Location location;
 
     @Embedded
-    private AlignmentStats alignmentStats;
+    private DishAlignmentStats alignmentStats;
 
     @Column(name = "stowed")
     private boolean stowed;
@@ -61,47 +61,6 @@ public class DishDiagnostics {
         GENERAL, BOOT_UP, CPU_VOLTAGE, DBF_AAP_CS, DBF_NUM_FEMS, DBF_READ_ERRORS, DBF_T_DIE_0, DBF_T_DIE_1,
         DBF_T_DIE_0_VALID, DBF_T_DIE_1_VALID, ETH_PRIME, EIRP, FEM_CUT, FUSE_AVS, GPS, IMU, PHY, SCP_ERROR,
         TEMPERATURE, VTSENS
-    }
-
-    @Embeddable
-    @Data
-    @NoArgsConstructor
-    public static class Alerts {
-        @Column(name = "dish_is_heating", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-        private Boolean dishIsHeating;
-
-        @Column(name = "dish_thermal_throttle", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-        private Boolean dishThermalThrottle;
-
-        @Column(name = "dish_thermal_shutdown", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-        private Boolean dishThermalShutdown;
-
-        @Column(name = "power_supply_thermal_throttle", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-        private Boolean powerSupplyThermalThrottle;
-
-        @Column(name = "motors_stuck", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-        private Boolean motorsStuck;
-
-        @Column(name = "mast_not_near_vertical", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-        private Boolean mastNotNearVertical;
-
-        @Column(name = "slow_ethernet_speeds", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-        private Boolean slowEthernetSpeeds;
-
-        @Column(name = "software_install_pending", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-        private Boolean softwareInstallPending;
-
-        @Column(name = "moving_too_fast_for_policy", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-        private Boolean movingTooFastForPolicy;
-
-        @Column(name = "obstructed", nullable = false, columnDefinition = "BOOLEAN DEFAULT FALSE")
-        private Boolean obstructed;
-    }
-
-    public enum DisablementCode {
-        UNKNOWN, OKAY, NO_ACTIVE_ACCOUNT, TOO_FAR_FROM_SERVICE_ADDRESS, IN_OCEAN, BLOCKED_COUNTRY,
-        DATA_OVERAGE_SANDBOX_POLICY, CELL_IS_DISABLED, ROAM_RESTRICTED, UNKNOWN_LOCATION, ACCOUNT_DISABLED,
-        UNSUPPORTED_VERSION, MOVING_TOO_FAST_FOR_POLICY
     }
 
     @Embeddable
@@ -128,22 +87,5 @@ public class DishDiagnostics {
 
         @Column(name = "gps_time_s")
         private double gpsTimeS;
-    }
-
-    @Embeddable
-    @Data
-    @NoArgsConstructor
-    public static class AlignmentStats {
-        @Column(name = "boresight_azimuth_deg")
-        private float boresightAzimuthDeg;
-
-        @Column(name = "boresight_elevation_deg")
-        private float boresightElevationDeg;
-
-        @Column(name = "desired_boresight_azimuth_deg")
-        private float desiredBoresightAzimuthDeg;
-
-        @Column(name = "desired_boresight_elevation_deg")
-        private float desiredBoresightElevationDeg;
     }
 }
